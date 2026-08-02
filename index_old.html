@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proxy Forge — not Everything You Need to Know Before Proxying</title>
+    <meta name="description" content="A comprehensive guide to making high-quality MTG proxies. Covers FedEx Office printing, EcoTank home printing, paper choices, lamination, cutting, foils, and more.">
+    <meta property="og:title" content="Proxy Forge — not Everything You Need to Know Before Proxying">
+    <meta property="og:description" content="A comprehensive guide to making high-quality MTG proxies.">
+    <meta property="og:image" content="https://i.imgur.com/0VrnIPt.jpeg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg-deep: #08080e;
+            --bg-section: #0f0f18;
+            --bg-card: #161622;
+            --bg-card-hover: #1c1c2e;
+            --gold: #c9a84c;
+            --gold-dim: #a08435;
+            --gold-glow: rgba(201, 168, 76, 0.15);
+            --purple-dim: #2a2540;
+            --text-primary: #e4e0d8;
+            --text-muted: #8a8694;
+            --text-faint: #5c5868;
+            --border: #1e1e2e;
+            --link: #b8a45a;
+            --link-hover: #e0cc6a;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--bg-deep);
+            color: var(--text-primary);
+            line-height: 1.7;
+            font-weight: 300;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a { color: var(--link); text-decoration: none; transition: color 0.2s; }
+        a:hover { color: var(--link-hover); }
+
+        strong { font-weight: 600; color: var(--text-primary); }
+
+
+        .adjust_image50 {
+            width: 75%;
+            display: block;
+            margin: 1.5rem auto;
+        }
+        /* ── NAV ── */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(8, 8, 14, 0.85);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-inner {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 60px;
+        }
+
+        .nav-logo {
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--gold);
+            letter-spacing: 0.08em;
+            text-decoration: none;
+        }
+
+        .nav-links { display: flex; gap: 1.5rem; list-style: none; flex-wrap: wrap; }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.75rem;
+            font-weight: 400;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover { color: var(--gold); }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* ── HERO ── */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 6rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 30%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px; height: 600px;
+            background: radial-gradient(ellipse, var(--gold-glow), transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-banner {
+            width: 100%;
+            max-width: 860px;
+            border-radius: 2px;
+            margin-bottom: 2.5rem;
+            border: 1px solid var(--border);
+        }
+
+        .hero-eyebrow {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.25em;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+
+        .hero h1 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2.2rem, 5.5vw, 3.8rem);
+            font-weight: 700;
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 em { font-style: italic; color: var(--gold); }
+
+        .hero-sub {
+            max-width: 600px;
+            font-size: 1rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .hero-update {
+            font-size: 0.8rem;
+            color: var(--text-faint);
+            margin-bottom: 2.5rem;
+        }
+
+        .hero-cta {
+            display: inline-block;
+            padding: 0.85rem 2.25rem;
+            border: 1px solid var(--gold-dim);
+            color: var(--gold);
+            text-decoration: none;
+            font-family: 'Cinzel', serif;
+            font-size: 0.85rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .hero-cta:hover { background: var(--gold); color: var(--bg-deep); }
+
+        /* ── TOC ── */
+        .toc {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .toc h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            color: var(--gold);
+            margin-bottom: 1.25rem;
+        }
+
+        .toc-list { list-style: none; columns: 2; column-gap: 2rem; }
+
+        .toc-list li { margin-bottom: 0.6rem; break-inside: avoid; }
+
+        .toc-list a { color: var(--text-muted); font-size: 0.88rem; }
+        .toc-list a:hover { color: var(--gold); }
+
+        /* ── CONTENT SECTIONS ── */
+        .content-section {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .section-divider {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-divider hr {
+            border: none;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--purple-dim), transparent);
+        }
+
+        .section-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            color: var(--gold-dim);
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .content-section h2 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-weight: 600;
+            margin-bottom: 1.25rem;
+            line-height: 1.3;
+        }
+
+        .content-section h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-top: 2.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .content-section p {
+            color: var(--text-muted);
+            font-size: 0.92rem;
+            line-height: 1.8;
+            margin-bottom: 1.25rem;
+        }
+
+        .content-section ol, .content-section ul {
+            color: var(--text-muted);
+            font-size: 0.92rem;
+            line-height: 1.8;
+            margin-bottom: 1.25rem;
+            padding-left: 1.5rem;
+        }
+
+        .content-section li { margin-bottom: 0.5rem; }
+
+        .content-section .section-intro {
+            font-size: 1rem;
+            max-width: 700px;
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+        }
+
+        /* ── TIP BOX ── */
+        .tip-box {
+            background: var(--bg-card);
+            border-left: 3px solid var(--gold-dim);
+            padding: 1.25rem 1.75rem;
+            margin: 1.5rem 0;
+        }
+
+        .tip-box strong {
+            color: var(--gold);
+            font-family: 'Cinzel', serif;
+            font-size: 0.8rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 0.4rem;
+        }
+
+        .tip-box p {
+            color: var(--text-muted);
+            font-size: 0.88rem;
+            line-height: 1.75;
+            margin-bottom: 0.5rem;
+        }
+
+        .tip-box p:last-child { margin-bottom: 0; }
+
+        /* ── IMAGES ── */
+        .content-img {
+            max-width: 100%;
+            border: 1px solid var(--border);
+            margin: 1.5rem 0;
+            border-radius: 2px;
+        }
+
+        .content-img-right {
+            float: right;
+            max-width: 320px;
+            margin: 0 0 1.25rem 1.75rem;
+            border: 1px solid var(--border);
+            border-radius: 2px;
+        }
+
+        /* ── SUPPLY LIST ── */
+        .supply-list { list-style: none; padding: 0; margin: 1.5rem 0; }
+
+        .supply-list li {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 1rem 1.5rem;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            transition: border-color 0.2s;
+        }
+
+        .supply-list li:hover { border-color: var(--purple-dim); }
+
+        .supply-list .price {
+            color: var(--gold);
+            font-weight: 500;
+            font-family: 'Cinzel', serif;
+            font-size: 0.85rem;
+        }
+
+        /* ── METHOD CARDS ── */
+        .method-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            transition: border-color 0.3s;
+        }
+
+        .method-card:hover { border-color: var(--purple-dim); }
+
+        .method-card h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            font-size: 1.1rem;
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+        }
+
+        .method-card .cost-tag {
+            font-size: 0.78rem;
+            color: var(--text-faint);
+            letter-spacing: 0.04em;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .method-card p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.75; }
+
+        /* ── FAQ ── */
+        .faq-item { margin-bottom: 2.5rem; }
+
+        .faq-q {
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--gold);
+            margin-bottom: 0.6rem;
+        }
+
+        .faq-a { color: var(--text-muted); font-size: 0.92rem; line-height: 1.8; }
+        .faq-a p { margin-bottom: 0.75rem; }
+
+        /* ── COST BOX ── */
+        .cost-breakdown {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 1.5rem 2rem;
+            margin: 1.5rem 0;
+            font-size: 0.88rem;
+        }
+
+        .cost-breakdown p { margin-bottom: 0.5rem; }
+
+        .cost-total {
+            color: var(--gold);
+            font-weight: 600;
+            font-size: 0.95rem;
+            border-top: 1px solid var(--border);
+            padding-top: 0.75rem;
+            margin-top: 0.75rem;
+        }
+
+        .expandable { background: var(--bg-card); border: 1px solid var(--border); margin: 1.5rem 0; cursor: pointer; }
+        .expandable-header { padding: 1.25rem 1.75rem; display: flex; justify-content: space-between; align-items: center; font-family: 'Cinzel', serif; color: var(--gold); font-size: 0.95rem; }
+        .expandable-header:hover { background: var(--bg-card-hover); }
+        .expandable-icon { transition: transform 1.1s; }
+        .expandable.open .expandable-icon { transform: rotate(90deg); }
+        .expandable-body { max-height: 0; overflow: hidden; transition: max-height 1.3s ease; padding: 0 1.75rem; }
+        .expandable.open .expandable-body { padding: 0 1.75rem 1.25rem; }
+
+        .floating-protip {
+            position: fixed;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--bg-card);
+            border: 1px solid var(--gold-dim);
+            color: var(--gold);
+            font-family: 'Cinzel', serif;
+            font-size: 0.8rem;
+            letter-spacing: 0.03em;
+            padding: 0.85rem 1.5rem;
+            z-index: 200;
+            opacity: 0;
+            pointer-events: none;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+            transition: opacity 3s ease;
+        }
+
+        .floating-protip.show {
+            opacity: 1;
+            transition: opacity 0.2s ease;
+        }
+
+        /* ── STRIKETHROUGH ── */
+        .struck { text-decoration: line-through; color: var(--text-faint); }
+
+        /* ── CLEARFIX ── */
+        .clearfix::after { content: ''; display: table; clear: both; }
+
+        /* ── FOOTER ── */
+        footer {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--text-faint);
+            font-size: 0.8rem;
+            border-top: 1px solid var(--border);
+        }
+
+        /* ── MOBILE ── */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-links.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 60px; left: 0; right: 0;
+                background: rgba(8, 8, 14, 0.97);
+                padding: 1.5rem 2rem;
+                gap: 1rem;
+                border-bottom: 1px solid var(--border);
+            }
+            .mobile-toggle { display: block; }
+            .hero { min-height: 80vh; padding: 5rem 1.5rem; }
+            .content-section { padding: 3rem 1.5rem; }
+            .content-img-right { float: none; max-width: 100%; margin: 1.25rem 0; }
+            .toc-list { columns: 1; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+            font-size: 0.88rem;
+        }
+
+        .comparison-table th {
+            text-align: left;
+            font-family: 'Cinzel', serif;
+            font-weight: 600;
+            font-size: 0.78rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--gold-dim);
+            padding: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .comparison-table td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-muted);
+            vertical-align: top;
+        }
+
+        .comparison-table tr:hover td {
+            background: var(--bg-card);
+        }
+
+        .comparison-table .method-name {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+    <div class="nav-inner">
+        <a href="#" class="nav-logo">Proxy Forge</a>
+        <button class="mobile-toggle" aria-label="Menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">&#9776;</button>
+        <ul class="nav-links">
+            <li><a href="#abstract" onclick="closeNav()">Abstract</a></li>
+            <li><a href="#prep" onclick="closeNav()">Prep</a></li>
+            <li><a href="#fedex" onclick="closeNav()">FedEx</a></li>
+            <li><a href="#finishing" onclick="closeNav()">Finishing</a></li>
+            <li><a href="#ecotank" onclick="closeNav()">EcoTank</a></li>
+            <li><a href="#foils" onclick="closeNav()">Foils</a></li>
+            <li><a href="#mdfc" onclick="closeNav()">MDFC</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+    <img src="https://i.imgur.com/0VrnIPt.jpeg" alt="Proxy Forge Banner" class="hero-banner">
+    <h1><em>not</em> Everything You Need to Know Before Proxying</h1>
+    <p class="hero-sub">Proxying comes in many forms. This guide is about producing very high quality proxies that pass the across-the-table sniff test. Two methods, one hobby.</p>
+    <p class="hero-update">Updated: 01 APR 2026 &mdash; Not April Fools. Double-sided printing findings added.</p>
+    <a href="#abstract" class="hero-cta">Begin the Guide</a>
+</div>
+
+<!-- TABLE OF CONTENTS -->
+<div class="section-divider"><hr></div>
+<div class="toc">
+    <h2>Contents</h2>
+    <ul class="toc-list">
+        <li><a href="#abstract">Before You Choose &mdash; An Abstract on the Hobby</a></li>
+        <li><a href="#prep">Getting Ready to Print</a></li>
+        <li><a href="#fedex">Method 1: FedEx Office</a></li>
+        <li><a href="#expectations">An Intermission on Expectations</a></li>
+        <li><a href="#finishing">I Have the Prints, Now What?</a></li>
+        <li><a href="#ecotank">Method 2: I'm Rich! (EcoTanking)</a></li>
+        <li><a href="#faq">Frequently Addressed Posts</a></li>
+        <li><a href="#foils">Appendix A: How to Print Foils</a></li>
+        <li><a href="#mdfc">Making MDFC / Double Sided Cards</a></li>
+    </ul>
+</div>
+
+<div class="section-divider"><hr></div>
+
+<!-- INTRO -->
+<div class="content-section">
+    <p>Proxying comes in many forms and sometimes is even confused with bootlegging/counterfeit cards. This article is about proxies and producing very high quality proxies that pass the across-the-table sniff test. You can of course use low quality proxies like printing at your library with sites like <a href="https://mtgprint.net/">mtgprint.net</a> where you will get low resolution, but identifiable prints for cheap. Or go to the bottom of the barrel and just use a sharpie and basic land and write the card you want. This article is not about that kind of proxying, although I just did give you an exhaustive how-to on that method.</p>
+
+    <p>Instead the objective is to present 2 ways to proxy and the process I have personally used where I have found success. I will also include at the end resources that I used to help me make decisions when I decided to only print from home. This is obviously based on my own subjectivity and you should still seek out other opinions by reading the <em>existing</em> posts found on sites and subreddits like <a href="https://www.reddit.com/r/magicproxies/">/r/magicproxies</a>. I am also based out of the USA, so pricing, availability of resources, supplies, etc, may not match what you have around you and would require you to do some of your own research to fill in those gaps.</p>
+
+    <p>So, the two ways you can make high quality proxies and avoid waiting for mail and paying a premium for others to print proxies for you?</p>
+
+    <div class="method-card">
+        <h3>Method 1: FedEx Office</h3>
+        <span class="cost-tag">~$80&ndash;100 initial investment &middot; ~15&ndash;18&cent; per card after</span>
+        <p>Use FedEx Office (or an office printing store near you, ymmv). This method has a moderate initial investment for supplies and after that the per-card cost is reasonable.</p>
+    </div>
+
+    <div class="method-card">
+        <h3>Method 2: EcoTank Home Printing</h3>
+        <span class="cost-tag">Same supply cost + $250&ndash;600 for printer &middot; ~4&ndash;6&cent; per card after</span>
+        <p>Print from home using an ecotank inkjet printer. This has the same initial investment above, but also requires you to buy a printer which can be as cheap as ~$250 and with the common goal of the 8500/8550 which sells for ~$600, but these go on sale from time to time.</p>
+        <p>You will notice I did not mention laser printers. These are an option and you may already have one, but home laser's are not economical to the hobby and thus not covered here.</p>
+    </div>
+</div>
+
+<div class="section-divider"><hr></div>
+
+<!-- ABSTRACT -->
+<section class="content-section" id="abstract">
+    <div class="section-label">The Mindset</div>
+    <h2>Before You Choose Your Method, an Abstract on the Hobby</h2>
+
+    <p>It is important that one treats proxying, no matter which method you choose, as its own separate hobby adjacent to MTG (or whatever you're proxying). This will require learning things you maybe had no intention of learning. Bookmarking a couple websites. Maybe joining a discord. And if you're really nuts, getting into creating your own proxies. While this hobby isn't difficult, it is time consuming and requires an enjoyment via the act of creation (printing, laminating, cutting, cornering, showing off your print). If you believe you would not be interested or enjoy having an arts and crafts hobby this will feel like a chore and I would imagine maybe even hinder your enjoyment of your original hobby (MtG) of slinging cardboard.</p>
+
+    <p>There is no perfect proxy method out there unless you own an industrial UV printer and have a decent amount of funds behind that. While you can almost always make a great looking proxy with a printer from FedEx or one of the Epson Ecotanks, getting that feel of a real card just right is where people (myself included) really get into the weeds. You must be able to understand you must sacrifice one of the fidelities in card feel: <strong>Either Thickness or Rigidity</strong>, and find that goldilocks zone that YOU are comfortable with.</p>
+</section>
+
+<div class="section-divider"><hr></div>
+
+<!-- GETTING READY TO PRINT -->
+<section class="content-section" id="prep">
+    <div class="section-label">Preparation</div>
+    <h2>Getting Ready to Print</h2>
+
+    <p class="section-intro">A big gap I have noticed in people messaging me is they use prep-sites which do not offer them the best quality or exerpience. In this section I will review the 2 sites I use to prepare my prints and create the PDF, these are the only options in my opinion. Others have posted their own solutions (usually made by them) and other alternatives. They still some how are more complicated and much worst than these very simple and community driven (or open source) webtools.</p>
+    <div class="expandable" onclick="toggleExpandable(this)">
+    <div class="expandable-header">
+        <span>MPCFill Picture Guide</span>
+        <span class="expandable-icon">></span>
+    </div>
+    <div class="expandable-body">
+        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.75; padding-top: 1rem;">
+            <img class="adjust_image50" src="images/mox1.png">
+            <img class="adjust_image50" src="images/mox2.png">
+            <div class="section-divider"><hr></div>
+            <img class="adjust_image50" src="images/mpc1.png">
+            <img class="adjust_image50" src="images/mpc2.png">
+            <img class="adjust_image50" src="images/mpc3.png">
+            <img class="adjust_image50" src="images/mpc4.png">
+            <img class="adjust_image50" src="images/mpc5.png">
+        </p>
+    </div>
+</div>
+
+    <div class="clearfix">
+        <img src="https://i.imgur.com/Wo9xyUi.png" alt="Proxy Print Settings" class="content-img-right" loading="lazy">
+
+        <ol>
+            <li>Bookmark these two sites:
+                <ul>
+                    <li><a href="https://mpcfill.com/editor">mpcfill.com/editor</a> &mdash; Where you can source the majority if not all of your card images.</li>
+                    <li><a href="https://proxyprint.taxiera.net/">proxyprint.taxiera.net</a> &mdash; The place you will upload images/xml file(s) to create your PDF.</li>
+                </ul>
+                <em>Optionally, use sites like Archidekt or Moxfield to create your card list.</em>
+            </li>
+            <li>Go to MPCFill and click the green <strong>Add Cards</strong> button. Using text is what I usually use, but if your decklist is not set to private you can use URL as well.</li>
+            <li>The left container will populate with all of your cards, but you should probably inspect every single card to make sure it has the art, design, and stamps you want. Click on the center button below the card image (1/##) and you will see all available art.</li>
+            <li>Once all of your cards are the way you want them, download the XML file under the gray <strong>Download</strong> button. It's just a small text-based file that can be used on the next site to import your cards without downloading each image individually.</li>
+            <li>If you ever want to come back to this card list with MPCFill you can use that same XML file with the Add Cards button.</li>
+            <li>Now go to <strong><a href="https://proxyprint.taxiera.net/">ProxyPrint</a></strong>. Click <strong>Add Images</strong> and select your XML file. Then wait as the site pulls each image over.</li>
+            <li>Use the settings you see in the image shown here.</li>
+        </ol>
+    </div>
+
+    <div class="tip-box">
+        <strong>Protip &mdash; Artist Priority</strong>
+        <p>As you get more comfortable with MPCFill you may find that you like certain proxy-artists more than others. You can make them priority by going to Search Settings and using Ctrl+F to find and move that artist to the top of the list. For example, PsilosX, Hathwellscriping, and RustyShackleford have some of the best quality arts that are faithful to the originals; with the latter having almost the entire MTG library, commons, dumpster cards, etc. </p>
+    </div>
+
+    <div class="tip-box">
+        <strong>Protip &mdash; Pay Attention to Details</strong>
+        <p>Pay attention to what you like &mdash; frames, set symbols, artist stamps, etc. Take your time selecting a design you enjoy every aspect of. For me, I want the actual set symbol. And I also don't like it too much when the proxy'er signs the card. Understand your personal preferences before clicking print. </p>
+    </div>
+
+    <div class="tip-box">
+        <strong>Protip &mdash; Cost Effective Printing</strong>
+        <p>Print in multiples of 9 so you fill an entire page of cards. When in doubt, print another Delney or Dual Land.</p>
+    </div>
+</section>
+
+<div class="section-divider"><hr></div>
+
+<!-- PREPRESS  -->
+<section class="content-section" id="Prepress">
+    <div class="section-label">Prepress</div>
+    <h2>Before You Print</h2>
+
+    <div class="clearfix">
+        <p>If you want to have the crispest and highest color fidelity with your prints it is worthwhile to take certain steps to ensure you get your best results the first time.</p>
+        <p>I will begin with a step you can take no matter the method you use and that is proofing your pdf to reach saturation and contrast that matches MTG. This will help your shadows not become just melded with the background, seperate colors, and help with exposure. When you apply these steps it may look like it is "lightening" the image and washing out the blacks, but I promise once you print you will see why we do it.</p>
+        <p>You will need an application capable of applying adjustment layers. Photoshop is the most popular software, but GIMP is a free alternative. GIMP is its own software and functions out of the box very differently than Photoshop (if you're already used to that). But learning it is simple and googling these steps will lead you to the direct answers.</p>
+        <div class="expandable" onclick="toggleExpandable(this)">
+        <div class="expandable-header">
+            <span>Color Fixing Picture Guide</span>
+            <span class="expandable-icon">></span>
+        </div>
+        <div class="expandable-body">
+            <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.75; padding-top: 1rem;">
+                <img class="adjust_image50" src="images/ps1.png">
+                <img class="adjust_image50" src="images/ps2.png">
+                <img class="adjust_image50" src="images/ps3.png">
+                <img class="adjust_image50" src="images/ps4.png">
+                <img class="adjust_image50" src="images/psb.png">
+                <img class="adjust_image50" src="images/psa.png">
+            </p>
+        </div>
+    </div>
+        <p><ol>
+            <li>Open your PDF, if it has multiple pages you can ctrl+click each page and then set the <em>Resolution</em> to 1200, the rest should look the same.</li>
+            <li>Each page will open as its own file.</li>
+            <li>Go to Window and make sure Actions is selected, this will let us create a reusable macro to apply these settings every time with one click.</li>
+            <li>Open the actions and click the square with the + sign to create a new action.</li>
+            <li>Click the record button (the circle). Now every action you take will be recorded. But don't worry you can delete any step it records when we are done if you misclick anything.</li>
+            <li>Click the adjustments tab and click to add: Hue/Saturation, Brightness/Contrast, and Exposure.</li>
+            <li>Now in the Properties Tab:</li>
+            <li>Hue/Saturation: Set to +10 saturation</li>
+            <li>Bightness/Contrast: Set to +8 Brightness</li>
+            <li>Exposure: Set to +1.10 for Gamma Correction</li>
+            <li>Click the stop button (the square) and you can now press the play button on any future project page to apply these settings to instantly.</li>
+        </ol></p>
+
+        <p>This is about as far as you can get for proofing your cards if you aren't printing them yourself, however, if you are printing them yourself, you can take further steps to really improve the quality of your cards.</p>
+        <div class="expandable" onclick="toggleExpandable(this)">
+        <div class="expandable-header">
+            <span>Print Settings Picture Guide</span>
+            <span class="expandable-icon">></span>
+        </div>
+        <div class="expandable-body">
+            <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.75; padding-top: 1rem;">
+                <img class="adjust_image50" src="images/print1.png">
+                <img class="adjust_image50" src="images/print2.png">
+                <img class="adjust_image50" src="images/print3.png">
+            </p>
+        </div>
+    </div>
+        <ol>
+            <li>In Photoshop you will want to print each page directly.</li>
+            <li>Color Handling: Printer Manages Colors</li>
+            <li>Rendering Intent: Perceptual</li>
+            <li>Go into Printer Settings and go to More Options tab.</li>
+            <li>Click Image Options and where Emphasize Text drop down is, click <em>Emphasize More</em>. Then click OK.</li>
+            <li>Now go to Advanced and set your numbers to 3,2,1,0. Density sholid never be above 0, this adds more ink to the paper which you don't need.</li>
+            <li>Then click Ok until you are back to the Photoshop print screen. You are now ready to print.</li>
+            <li><strong>As a note, make sure you have selected your default settings on Main in Printer settings, it will be different based on your paper.</strong></li>
+        </ol>
+    </div>
+
+<!-- METHOD 1: FEDEX -->
+<section class="content-section" id="fedex">
+    <div class="section-label">Method 1</div>
+    <h2>FedEx Office</h2>
+
+    <div class="clearfix">
+        <img src="https://i.imgur.com/4aTZQwo.png" alt="FedEx Settings" class="content-img-right" loading="lazy">
+
+        <p>I have a couple reviews on my experience using <a href="https://www.reddit.com/r/magicproxies/comments/1ml7s6c/review_fedex_office_and_office_depot_printer/">Office Depot</a> and <a href="https://www.reddit.com/r/magicproxies/comments/1mrfd7r/follow_up_review_of_fedex_office_proxies/">FedEx Office</a> in my post history on reddit. My review of Office Depot is they are hot garbage, but this is a localized issue and ymmv between office printing stores. It is best you go physically visit them and ask about what they have to offer. FedEx Office is nice in my opinion because their site is very straight forward and they have a good turn around time and quality control. I believe FedEx Office simply has better consistency across county lines because of how enormously rich they are and they do spend money on technology and probably pay a little better than others (I am sure it [their pay] is still garbage).</p>
+
+        <p>Most FedEx Office's also have giant rotary cutters, so if you wanted to save even more money, you can use their rotary cutters. With that said, you must invest some money at this point. Here is what you will need to create high quality proxies at FedEx (and at home):</p>
+    </div>
+
+    <h3>Supplies</h3>
+    <ul class="supply-list">
+        <li><span class="price">~$60</span> &mdash; <a href="https://www.amazon.com/dp/B083FBYHXR?ref=ppx_yo2ov_dt_b_fed_asin_title&th=1">12" Rotary Cutter</a> (Dahle is the most common brand. I bought the 18" because it was cheaper, but this thing is annoyingly big. Shop around, these prices fluctuate.)</li>
+        <li><span class="price">~$16</span> &mdash; <a href="https://www.amazon.com/dp/B0076FJ7SS?ref=ppx_yo2ov_dt_b_fed_asin_title&th=1">Kadomaru Corner Punch</a> (Do not budget on this &mdash; get the Kadomaru puncher. The cheaper ones will not punch through properly.)</li>
+        <li><span class="price">~$30&ndash;50</span> &mdash; Laminator (<span class="struck">I originally had a ~$20 Bonsai laminator and it was garbage &mdash; overheated, rotors got stuck.</span> Go green and get a $30&ndash;50 laminator that is built to last. Get one that accepts your size of paper and preferably has an on/off switch.)</li>
+        <li><span class="price">~$18</span> &mdash; <a href="https://amazon.com/dp/B079KL4C91?ref=ppx_yo2ov_dt_b_fed_asin_title&th=1">Lamination Sheets</a> (Amazon Basics is more than good enough.)</li>
+    </ul>
+
+    <p><em>The American Economic Landscape is wild, so these prices may not reflect accurately depending on when you decide to jump in. I literally updated these now (31July2026), about a year later from originally posting this and the prices for these tools have increased by about 20%.</em></p>
+
+    <h3>Placing the Order</h3>
+
+    <p>Now that everything you need is in the mail, go to <a href="https://www.office.fedex.com/default/copies.html">FedEx's printing portal</a>. Bookmark this because it can sometimes be a pain to find via their main site.</p>
+
+    <p>I have experience printing on 60lb and 80lb. After initial testing I preferred 60lb as it was perfect thickness after laminating, but now with a few months feet wet in the hobby I recommend sacrificing that thickness fidelity for better rigidity and go for <strong>80lb</strong>. You can also experiment with other available options. FedEx Office also has unadvertised sizes at the shop, so visit them and they can give you samples. You will have to ask them how to order those &mdash; it usually requires emailing them instead of using the site.</p>
+
+    <p>Select the settings you see in the image (you do not need to adjust the quantity unless you want multiple copies of your cards). Upload your PDF, wait for the preview, ignore any finishing touch upsells, and <strong>Add to Cart</strong>.</p>
+
+    <p>That's basically it. You will get an email when it is ready and if they're as clutch as mine, a sweet elderly lady will call you telling you your prints are ready. Go to the front desk and tell them you're there to pick up your prints.</p>
+</section>
+
+<div class="section-divider"><hr></div>
+
+<!-- INTERMISSION -->
+<section class="content-section" id="expectations">
+    <div class="section-label">A Reality Check</div>
+    <h2>An Intermission on Success and Expectations</h2>
+
+    <p>You may be wondering now, "wait, all my backs are just white!" Yes, I do not print backs on my cards. For me it is a waste of money and all my decks are sleeved, so the only purpose I can surmise for wanting a back:</p>
+
+    <ol>
+        <li>You're a stud and just want custom backs.</li>
+        <li>You want to make counterfeits.</li>
+        <li>You are selling your proxy services (not the same as #2).</li>
+    </ol>
+
+    <p>These are all acceptable reasons, with 2 having a shade of moral dilemma, but I am neither of 1 or 3. Printing backs just costs extra and you have to really ask yourself how much a back is worth to you. Using FedEx, the cost for a card jumps to about 30&cent; a card and at that point you may want to look into using <a href="https://www.makeplayingcards.com">MakePlayingCards.com</a> and making a large order.</p>
+
+    <p>This is one of many examples of measuring your expectations and understanding that you need to be playing these cards in sleeves. The sleeve does a magical job of really cleaning up any imperfections you may feel for a proxy. Think the lamination finish looks off? Sleeve it and magically it's gone (it's magic, I looked it up). That white back looks horrendous? Wow, Dragon Shield sleeves never felt better. Is the feel a little off? Sleeve that bad boy and it suddenly blends in with every card.</p>
+
+    <p>I run decks that are 10%&ndash;50% proxies and while my stack may look a CM taller or so than my opponents it really doesn't flash itself and no amount of DIY David Blainery has allowed me to force a card to the top because I can tell one card (during a shuffle) is 0.04mm thicker amongst the 99. Also, are people not cutting your deck?</p>
+
+    <p>I say all this to bring us back to reality that we are not here creating counterfeits, just amazing proxies that ya, some of you may feel compelled to sell and why not, you made some great looking proxies and people want them. No shame in any of that.</p>
+</section>
+
+<div class="section-divider"><hr></div>
+
+<!-- FINISHING -->
+<section class="content-section" id="finishing">
+    <div class="section-label">Post-Print Process</div>
+    <h2>I Have the Prints, Now What?</h2>
+
+    <p class="section-intro">There are several methods out there &mdash; spray, immersion, single sided proxying, vinyl stickers, etc. I am a smooth brained individual and I don't want those variables and set ups. Here is my process: laminate and cut.</p>
+
+    <ol>
+        <li><strong>Warm up your laminator</strong> and wait for the indicator light to let you know when it is ready. Do not use it before then.</li>
+        <li><strong>Place your print in the pouch</strong> only when you are ready to laminate. Don't pre-stage a bunch &mdash; they will collect dust and cause minor imperfections. The more TLC you give this step the more you get back.</li>
+        <li><strong>Feed the pouch</strong> (closed end first) and slowly slide it in until the rollers catch. Let go. If you can, let the paper come out as parallel as possible with the table so it gets cooked evenly. Do not let it sit in the laminator &mdash; mine will let the last centimeter or so slow cook. Let them cool for a minute.</li>
+        <li><strong>Trim the edges.</strong> Make sure you have a comfortable amount of space for your rotary cutter. First cut all 4 edges off so all the white is gone. Use the guide lines to assist. If you are using the Dahle, line up the guide line so it is above the silver edge and make sure both sides are aligned.</li>
+        <li><strong>Cut the 3&times;3 grid horizontally</strong> &mdash; remember you have a gutter, so between cards you will cut twice. You should now have 3 strips of 3 cards each.</li>
+        <li><strong>Cut vertically</strong> to separate the cards within each strip, following the same pattern.</li>
+        <li><strong>Corner punch</strong> all 9 cards. You now have finished proxies. If you feel like it, you can run each card through the laminator once more, but I've never felt the need unless making foils.</li>
+    </ol>
+
+    <div class="tip-box">
+        <strong>Protip &mdash; Cutting Technique</strong>
+        <p>Dahle is super sharp and stable &mdash; you do not need to move the shuttle across at light speed. I find that cutting too slowly encourages self-doubting adjustments which give bad cuts. Instead cut at an even and brisk swipe so that the shuttle lands against the opposite edge firmly.</p>
+    </div>
+
+    <div class="tip-box">
+        <strong>Protip &mdash; Fixing Issues</strong>
+        <p>Sometimes you get an errant lamination-hair hanging off the edge or maybe the card is pringling. Send it through your hot laminator and let it rest underneath a stack of cards or a book. If you are pringling every time you may not be letting ink dry or the laminator heat up enough.</p>
+    </div>
+</section>
+
+<div class="section-divider"><hr></div>
+
+<!-- METHOD 2: ECOTANK -->
+<section class="content-section" id="ecotank">
+    <div class="section-label">Method 2</div>
+    <h2>I'm Rich! (EcoTanking)</h2>
+
+    <p>Let me be straight up here and maybe catch some naysayers, but if you chose Method 2 with the argument you are gonna save so much more money than option 1 and get way better prints than FedEx &mdash; you're mostly wrong. Method 2 is an investment into becoming a full hobby-nerd in not just MTG but also proxying. You choose Method 1 because you like MTG and want nice looking proxies. You choose Method 2 because you like the idea of printing anything and everything that you want and instantly playing them. All the fan art, all the dumb deck ideas, whatever. You just wanna stay at home and just do the damned thing with or without realizing this is an actual hobby on its own. That is what buying a 500&ndash;700 dollar printer is.</p>
+
+    <p>If you go the budget route and get the ET-2850, you can make a long-game argument that you are saving money. The ROI is a much shorter road than getting the ET-8500/8550.</p>
+
+    <div class="cost-breakdown">
+        <p><strong>Cost per card breakdown (estimated):</strong></p>
+        <p>Ink: $110 for ~3,000 cards = <strong>~$0.04/card</strong></p>
+        <p>Paper: ~334 sheets at ~$0.20/sheet = <strong>~$0.02/card</strong></p>
+        <p>Lamination: <strong>~$0.01/card</strong></p>
+        <p class="cost-total">Grand total per card: ~$0.07 &mdash; about half the price of FedEx, but with a much higher upfront investment.</p>
+        <p style="margin-top: 0.75rem; font-size: 0.85rem;">If you bought the ET-2850 for $250, you'd need to print ~3,570 cards to start saving money versus FedEx. That number is substantially higher if you bought the 8500.</p>
+    </div>
+
+    <p>So again, are we getting the printer to "save money"? You can tell that lie to your life-partner, but I instead told my wife, "Hey we can print pictures of our son" and that was way more honest with myself and her than lying to myself saying I am saving money. But my god is it fun to print these cards.</p>
+    <div class="tip-box">
+        <strong>Protip &mdash; The Idiot's Lie</strong>
+        <p>When I talk amongst podmates or redditors sometimes I see or I am told how I am saving hundreds of thousands on my cards. They are comparing the actual speculative price of a card versus the materials. Do not act like you are saving hundreds or even thousands per card because you are printing at home or FedEx. That is why I am directly comparing the cost to another at cost service.</p>
+    </div>
+</section>
+
+<div class="section-divider"><hr></div>
+<section class="content-section" id="faq">
+    <div class="section-label">Your Responsibility At the Pod</div>
+    <h2>The Proxy Industrialist's Arms Race</h2>
+
+    <div class="faq-item">
+        <div class="faq-q">How to Limit yourself and Why?</div>
+        <div class="faq-a">
+            <p>From my limited view in my Pod and the redditors in the commander spaces I see most people who Proxy as not true CEDH'ers, but those that I meet personally I realize are like aspiring CEDH'ers, or even worst, folks who pretend to be casual but bring insane heat. And I don't mean lean mana bases, I mean they slot Smothering Tithe, Rhystic Studies, Mystic Remora, T-Pro, Cyclonic Rift, Tutors, Mox, Diamond, Monoliths/Tombs, Gaea's Cradles, and every single engine piece into their decks. This is the start of the arms race and destroys a lot of pods. </p>
+            <p>When you start to proxy you may be like me and want to offer your services, I offer them freely, but maybe you make some extra change. But I have strict rules for what I will print for myself and I make others follow those rules. I don't print those cards I just listed, except an errant tutor here or there. Commander is so much about player expression that if you let yourself just print bangers and engine stacks, you quickly lose any identity in your deck.</p>
+            <p>If you run in a B5 group, then print away. But I caution anyone and everyone that you print responsibly. Everyone has access to proxying and when you slot those blue and white bangers in your decks, expect that next week you will be on the sharp end of it. I say this to say, if your group is a true B3 group or B2 group, that you print for everyone within those bounds. One of my pods is falling apart because folks started printing cards at the library and no one wants to deal with boosted decks no one had any intention of playing.</p>
+            <P>I say all this to say that there is no wrong way to play Magic, but you need to know what way you and your mates play Magic and why. Then print based on that philosophy, rigidly. Keep your identity as a cardboard slinger and foresake the temptation to slide in 3 more token doublers, false-advocacy player draw, and for the love of god, don't put Glacial Chasm in your land recursion deck, you're not clever, you aren't interesting, and you're fired.</P>
+        </div>
+    </div>
+</section>
+<div class="section-divider"><hr></div>
+<!-- FAQ -->
+<section class="content-section" id="faq">
+    <div class="section-label">The FAQs</div>
+    <h2>Frequently Asked Questions</h2>
+
+    <div class="faq-item">
+        <div class="faq-q">Q: Which printer should I get?</div>
+        <div class="faq-a">
+            <p>The answer you will almost always hear is the <strong>ET-8500/8550</strong>. The budget option is popularly the <strong>ET-2850</strong>. All other printers are super tertiary to the conversation and mostly ignored save the random wild encounter on Reddit where someone can answer questions about your Canon or HP.</p>
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-q">Q: What is the difference between the ET-8500 and ET-8550?</div>
+        <div class="faq-a">
+            <p>They are essentially the same, using the same technology to create the same high quality prints. ET-8550 has a larger bed and can handle thicker paper, even foamboard. Since this is never in my equation it was never something I considered. Unless you have more Arts and Crafts in your future outside of Proxying, ET-8500 is the best bet.</p>
+        </div>
+    </div>
+
+    <div class="faq-item clearfix">
+        <div class="faq-q">Q: Why is ET-2850 the budget option? How much worse is it?</div>
+        <div class="faq-a">
+            <img src="https://i.imgur.com/whdL3Ib.jpeg" alt="Faux Black comparison" class="content-img-right" loading="lazy">
+            <p>I cannot speak to this personally, only from what I have learned from reading articles, posts, and reviews. The 2850 creates brilliant prints and honestly, I'd be hard tasked to tell you which of the two is which once sleeved. Here is a big fact though: <strong>2850 cannot print black on glossy/foil paper properly.</strong> Instead of using your in-abundance black pigment ink, it will instead combine your CMY colors to create a bluish black (think 1990's Venom art).</p>
+            <p>So is it a bad printer? Not at all. It just has that limitation and is older technology. The 2850 is a budget printer that meets the demand of quality we want when we talk about high quality proxies at home.</p>
+            <p><em>There are other ecotank options made by Epson, but 2850 is sort of the catch-all compared to the others. This is a big investment &mdash; if this article isn't making you feel warm and fuzzy about your choice, seek other opinions.</em></p>
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-q">Q: What other budget options exist? Comparing the 2850 to the 2800</div>
+        <div class="faq-a">
+            <ul>
+                <li><strong>2800</strong> uses Black Photo Ink, allowing more paper options including glossy and foils.</li>
+                <li><strong>2850</strong> has auto double-sided printing.</li>
+                <li><strong>2850</strong> has a better scanner (2400 dpi vs 1200 dpi on the 2800).</li>
+                <li>Both have the same print resolution: 5760 &times; 1440 dpi.</li>
+                <li>Both are thankfully compatible with the ever GOATed Windows 8.1 32bit. 2800 is also compatible with Windows 2003, wtf is going on.</li>
+                <li>2800 describes a sleep mode that 2850 does not, which makes me think 2800 has auto-sleep &mdash; which I do appreciate.</li>
+                <li>They are nearly the same size with the 2850 being 3 lbs heavier.</li>
+                <li>2850 has a larger reservoir for black ink, which is your most used ink. The black ink for the 2850 is also about half the price &mdash; but you are limited to paper options for true black prints.</li>
+            </ul>
+            <p>The good news is these are both great printers that go on sale often. Amazon is often our go-to, but be sure to shop around.</p>
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-q">Q: What is DPI and resolution of a card?</div>
+        <div class="faq-a">
+            <p>Dots Per Inch, this is the print's physical resolution as images are produced by dots of ink. The more dots you can fit in an inch the more details and color fidelity you can get. The low standard is 300 and most seek 800 or prefer 1200. One of my favorite Proxy providers is RustyShackleford and they have 460dpi. But there are ways to increase your finished product's dpi before printing. If you are using MPCFill to source you have nothing to worry about as all of the images have been QA'd.</p>
+            <p>If you choose to use scryfall or like sites for sourcing your cards you are far and below the standard and will not have high quality proxies. Those are essentially prints from your local library.</p>
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-q">Q: Give me a Cost Breakdown?</div>
+        <div class="faq-a">
+            <table class="comparison-table">
+    <thead>
+        <tr>
+            <th>Source</th>
+            <th>Per Card</th>
+            <th>Notes</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="method-name">MPC</td>
+            <td>35&ndash;47&cent;</td>
+            <td>Best in bulk</td>
+        </tr>
+        <tr>
+            <td class="method-name">ProxySites</td>
+            <td>50&ndash;150&cent;</td>
+            <td>Middle of the road</td>
+        </tr>
+        <tr>
+            <td class="method-name">Bootleggers</td>
+            <td>200&ndash;400&cent;</td>
+            <td>Counterfeits, often required to buy in pre-determined sets to save on bulk</td>
+        </tr>
+        <tr>
+            <td class="method-name">FedEx/Office</td>
+            <td>16&cent;</td>
+            <td>No discounts on bulk</td>
+        </tr>
+        <tr>
+            <td class="method-name">EcoTank</td>
+            <td>7&cent;</td>
+            <td>Huge initial investment</td>
+        </tr>
+    </tbody>
+</table>
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-q">Q: What Printer Settings Should I Use?</div>
+        <div class="faq-a">
+            <p>This really is a you question and experimenting, but here is the starting point I was given:</p>
+            <img src="https://i.imgur.com/iRkDnmO.png" alt="Printer Settings" class="content-img" loading="lazy">
+            <p>I no longer use these settings. I use (from top to bottom) <strong>3, 2, 1, 0</strong>. This gives me exactly what I want. I have never found a need to increase density. But as always, YMMV and you are encouraged to experiment. Remember, we were never saving money to begin with so just be willing to fail.</p>
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-q">Q: What is the difference between all of these printers and why is 8500/8550 always the top pick?</div>
+        <div class="faq-a">
+            <p>The 8500 gets all the love because it is the only eco-tank (at this consumer level) that includes both <strong>pigment and photo inks</strong>. This gives the 8500 a flexibility no other ET has &mdash; it can print successfully on luster, satin, matte, and glossy finishes without skipping a beat. The other ETs all use pigment black which means it will not adhere to glossy finishes.</p>
+            <p>As for Laserjet options, it's the conversation of the spectrum of quality across models. Epson's ecotanks are made for photos so they want to give great quality. Laserjets range from making text documents to making impressive posters. They also are not eco-friendly to your wallet when it comes to inks &mdash; you need to replace the whole ink cartridge even if your magenta is still going strong. With Ecotanks you fill as you go, whichever ink you need.</p>
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-q">Q: What paper has best thickness/rigidity?</div>
+        <div class="faq-a">
+            <p>Remember, you need to sacrifice one or the other and I recommend you sacrifice thickness fidelity for better rigidity. A vanilla MTG card is ~0.30mm&plusmn;1. I use cards that are between 0.33&ndash;0.37mm&plusmn;1 and prefer them at that 0.37 mark.</p>
+            <p>Many redditors have put in a lot of time, effort, and money into researching this. Check out <a href="https://www.reddit.com/r/magicproxies/comments/1ij7pip/paper_test_summary_list_with_links_epson_8550/">/u/danyearman's research</a> &mdash; it includes metrics and links to many other contributors' findings. Honestly, this post should be the wiki on the magicproxies subreddit.</p>
+            <p>What I use: I bounce between <strong>Koala's Photo 160gsm</strong> and <strong>Koala's Photo 180gsm</strong>. 160gsm comes out to ~0.33mm &mdash; great thickness, but a tiny bit flimsy. I honestly still swap back and forth. I honestly cannot decide between the two. About 10 months ago I declared 180gsm as my main paper, but for the past 4 months I have exclusively used 160gsm. Both are good and I could just be playing tricks on myself. I have not ventured out to try other papers because that's expensive and I honestly have been happy with what I got.</p>
+            <p>If you want more anecdotes, I supply my table with a ton of proxies and people use my decks and they cannot tell the difference when shuffling. Some have pointed out that when they draw some cards they can kinda feel it lack rigidity, or vice versa, it's too stiff. Ironically, they called that out on one of my Tarkir decks and it was a legit card they said was too stiff. So there is definitely a bit of a psychological phenomena taking place where they know there's proxies, so they become more alert to it.</p>
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-q">Q: Which has better results, Glossy or Matte?</div>
+        <div class="faq-a">
+            <p>I bought Koala's photo paper 180gsm in both matte and glossy, printed some of my favorite lands, and they were exactly the same once laminated. I literally lost track of which was which as I compared them. I always like to use the mana symbols (especially the green mana tree) to see how much detail is blotted out &mdash; both had the same amount of detail at that micro level. Fun fact: Laser jets usually get better detail, so FedEx actually produces sharper detail than the Ecotanks.</p>
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-q">Q: I can't find [New Card/SLD], where do I go?</div>
+        <div class="faq-a">
+            <p>The best way is to check the <a href="https://discord.gg/ut2QmPU5">magic proxies Discord</a>. You can search a card there easily and see all the contributors and raw images. If you cannot find it on there or MPCFill, use the requests channel and ask. You will be surprised how many people are willing to get you what you want. New cards, especially Secret Lairs, can take a while to get to MPCFill.</p>
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-q">Q: I want to make my own custom cards and proxies, how do I do it?</div>
+        <div class="faq-a">
+            <p>You will want to use <a href="https://cardconjurer.app/">CardConjurer</a>. It has all the tools to make or replicate almost any card and they even have a tutorial on the site. Using other tools like Photoshop or even AI inpainting/outpainting can really open up avenues for creativity.</p>
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-q">Q: Where do I find full original art from cards?</div>
+        <div class="faq-a">
+            <p>If you are lucky the artist will have their own Insta, Tumblr, ArtStation, DeviantArt, or personal site. A simple Google search of that artist will be the best place to start. Secret Lair artists, especially Japanese artists, are harder to find full art for. If you find art that needs upscaling, <a href="https://imgupscaler.com/">imgupscaler.com</a> seems to fit the bill.</p>
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-q">Q: My laminations are blotchy/bad/streaking</div>
+        <div class="faq-a">
+            <p>Many operators like to blame the equipment, but the problem is probably your process. Most issues with finishes via lamination are due to not waiting long enough for 2 things: your laminator needs to warm up (wait for the indicator), and you need to let your ink completely dry. Give it 10&ndash;20 minutes to rest &mdash; you will know when it is dry because most paper will look a little wrinkle-wet when it comes out and will slowly dry. If you are getting fogginess or 2D bubbles, that is usually due to the laminator not being hot enough. Some people suggest setting the device to 5mil when laminating 3mil. But usually, you just need to let it warm up.</p>
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-q">Q: What about poundage and gsm? Which is best?</div>
+        <div class="faq-a">
+            <p>Pounds is, from what I can tell, an American thing. Which means it's quite inane and is at best nebulous. It means how much a ream weighs <em>before</em> it is cut to 8.5&times;11 &mdash; and because each manufacturer's stinky paper plant does things differently, each uncut ream is also a different size, not just between vendors but between factories and SKUs. So poundage should be the last thing you try to leverage for understanding thickness and rigidity.</p>
+            <p><strong>GSM</strong> (Grams per Square Meter) is infinitely better. It's an actual scientific metric. Does that mean Hammermill's 180gsm and Koala's 180gsm are the same? No, because the materials will make rigidity and thickness varied. But 180gsm across brands is a helluva lot more suitable to making decisions than comparing 42lb to another 42lb card stock. Unfortunately, unless your brand has really good released data, the only real way to find out is through testing. Again, <a href="https://www.reddit.com/r/magicproxies/comments/1ij7pip/paper_test_summary_list_with_links_epson_8550/">/u/danyearman and others</a> have gone through a lot of the headache to get you started. Remember, no one on this side of the tracks is saving money.</p>
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-q">Q: How do I print on [Insert Color]-Core cardstock?</div>
+        <div class="faq-a">
+            <p>I won't even broach this conversation as someone that knows, but what I do know is that if you are asking this question then you have not done any fundamental research before deciding to spew that question out into a public forum. Read a lot if you are exploring non-traditional/over-the-counter cardstock.</p>
+        </div>
+    </div>
+</section>
+
+<div class="section-divider"><hr></div>
+
+<!-- APPENDIX A: FOILS -->
+<section class="content-section" id="foils">
+    <div class="section-label">Appendix A</div>
+    <h2>How to Print Foils</h2>
+
+    <p>Printing foils is always a sort of right of passage in proxying. I really enjoyed it, but once I burned through my 20 foil sheets I have very little desire to return to it. It's a tiny bit of extra effort and costs substantially more (~$0.05/card, more than 2&times; the cost of a regular card). Why do we foil? For the prestige of course, and <em>sometimes</em> they come out great. Foils tend to be dark and I have found the more negative space you have (blacks and whites) the worse it looks. Light blues and the whole spectrum of reds look gorgeous though.</p>
+
+    <p>Check out my foil journey: <a href="https://www.reddit.com/r/magicproxies/comments/1n3r01g/first_batch_of_trying_foils_and_reviewing_some/">Round 1</a> and <a href="https://www.reddit.com/r/magicproxies/comments/1n7x2gl/home_foils_round_2/">Round 2</a></p>
+
+    <p>I have 2 methods (of course two) for making foils, but they are basically identical in process. The only difference is what paper you stick the foils onto. You can use text paper (0.35mm&plusmn;1, good rigidity but lacks the snap) &mdash; ideal if you plan on loading up on proxy foils in a single deck. Or you can use 160gsm (0.41mm&plusmn;1, noticeably thicker, incredible snap).</p>
+
+    <h3>The Process</h3>
+
+    <ol>
+        <li>Get foil paper &mdash; I used <a href="https://www.amazon.com/dp/B0915S8S9V?ref_=ppx_hzsearch_conn_dt_b_fed_asin_title_1&th=1">this one</a>, but whatever you find fun will be basically the same. Just make sure it is <strong>inkjet compatible</strong>.</li>
+        <li>Print on the correct side of the foil &mdash; orientation/flip matters. I made this mistake before. My settings: paper type <strong>Ultra Premium Photo Paper Glossy</strong> set to <strong>High</strong> (I noticed no difference with Best).</li>
+        <li>Print out your PDF as normal.</li>
+        <li><strong>Let it dry.</strong> Because of the finish, actually give it a while &mdash; watch an episode of Golden Girls and return to it. Or 10 minutes is probably enough.</li>
+        <li>Get a clean working space. Make sure debris doesn't get onto the sticker side.</li>
+        <li>Select your base paper (regular printing paper, 160gsm, whatever) and prepare it on a clean surface.</li>
+        <li><strong>Apply the foil sticker:</strong> Peel the bottom short edge of the foil so about 4&ndash;6 inches is exposed. Line up the 2 bottom corners onto the 2 bottom corners of the sheet. Keep the sticker paper taut so you don't create a hump/crease. Commit, place the bottom edge down firmly, then slowly and confidently sweep the broad part of your hand across inch by inch, peeling as you go to prevent air pockets or creases.</li>
+        <li>It will never be perfect &mdash; your sticker may be off by a mm on an edge or two. Who cares, so long as you don't have any creases or air pockets.</li>
+        <li>Prepare your lamination pouch. Find the short edge that has no sticker-side sticking out &mdash; that goes into the pouch first. If you do it with the imperfect-alignment side, it will catch onto the pouch and be a headache.</li>
+        <li>Laminate as normal.</li>
+        <li>Cutting foil is a little harder &mdash; your guide lines will probably not be parallel with the pouch and cutter edge. Take your time on first cuts, as the better you do on the edges, the better the rest will turn out.</li>
+        <li>Cut the 9 cards and corner punch them.</li>
+        <li><strong>Run each card through the laminator once more.</strong> Since these are individual cards, make sure they don't overlap &mdash; let them have space and exit before putting more in. You don't wanna create a card-centipede.</li>
+    </ol>
+
+    <div class="tip-box">
+        <strong>Protip &mdash; Foil Paper Warping</strong>
+        <p>Foil paper can bend depending on how you store it. Make sure the paper is completely flat before printing, otherwise your printer head can catch onto the sticker paper and mess up your print. I always use the tray over the manual feeder for foils.</p>
+    </div>
+</section>
+
+<div class="section-divider"><hr></div>
+
+<!-- MDFC / DOUBLE SIDED -->
+<section class="content-section" id="mdfc">
+    <div class="section-label">Advanced</div>
+    <h2>Making MDFC / Double Sided Cards</h2>
+    <p><em><strong>This is mostly a discussion vice hard and fast solutions. If you want to skip the theater of it, go to the bottom where the Secret Third Option is.</strong></em></p>
+    <p>There is no great solution for this, so much so that I got downvoted for even asking about it. This is where the hobby of printing comes in. There are so many variables at play that your method will honestly only ever work for you. But, I want to try to help you get to that point because MDFC's are a core component to the game and if you're like me you don't like the alternatives.</p>
+    <div class="tip-box">
+        <strong>What are the alternatives?</strong>
+        <p>Players will either print 2 cards and keep the back as a side board and trade it out live in play, this is bulky and not as cool as doing the YuGiOh animations of flipping your card.</p>
+        <p>Also, many MDFC's have had proxy-artists make single side versions, but these are not choice for me, as proxying for me is having the best art on display, often these single sided MDFC's have 0 art.</p>
+        <p><a href="images/mdfcbadexample.png">Does this scream MTG?</a></p>
+    </div>
+
+    <p>Firstly, I have <a href="resources/printer_alignment_test.pdf">created a document</a> that can be printed to be a great resource to help figure out where you need to shift things. It will also make apparent the variables I am talking about. Your printer will never ever take your paper at a straight 90 degrees, so your paper will already be skewed to some degree.</p>
+        <ol>
+            <li>Your paper will always have a skew to the left or right by some degree.</li>
+            <li>The thicker your paper, the more offset you have. <em>Office paper has almost perfect alignment, 160gsm, about 0.35mm offset. 180gsm, 0.5mm offset.</em></li>
+            <li>Each row will have degrading results with the bottom row often being the largest offender</li>
+            <li>Your MDFC's will never be perfect if you print them 3x3.</li>
+        </ol>
+
+    <div class="tip-box">
+        <strong>But with all that said...</strong>
+        <p>You can still have great looking MDFC's that will be mostly aligned, this is again to set realistic expectations. So many redditors (myself included) posit anecdotal observations in this hobby as the absolute truth. Only one truth exists, your proxies aren't the real cards.</p>
+    </div>
+    <p>I do everything borderless, thus I cannot use the cool tool of double-sided printing and I would tell you to not bother with it unless you are entrenched in the idea of using the double-sided printer options for the 'off-sets'. The problem with this solution is the offset is for the entire document, so you will probably just be compensating for the error and producing a mirrored error elsewhere.</p>
+    <p>So what are the real options? You need to produce a median offset of 25-50% of the observed major offset. For example, I witness the 0.30mm offset with my common paper, I offset the entire document by 0.10mm. So every card will have a bit of an error (with the middle receiving the best conditions), but at least the major errors become negligible. </p>
+    <p>How do you offset? I have 2 options. You can use the <strong>printer's double-sided printing options</strong> and set an offset. Set it to mm and zero in. Since you cannot offset by negatives, you need to ensure you offset the side that is erroring, usually the backside.</p>
+        <ul>
+            <li>The problem with this is that you pretty much have to use the printer settings for Plain Paper or other Matte finishes as Glossy setting does not allow automatic double-sided prints.</li>
+            <li>You also are not allowing time for the ink to dry, you risk roller marks on your front finished side.</li>
+            <li>Because you are limited to the plain paper and matte settings you are restricting your paper options to matte, as well as not having the promised quality of the higher settings.</li>
+        </ul>
+    <p>The second option is what I recommend. Use your favorite software to nudge the document left or right as necessary. I use photoshop for finishing, but GIMP has the same options for moving the document on the X axis. You will have to experiment a little and you will technically need to do this experiment for every thickness of paper you are using, but just be sure to write it down. I personally print my proofing document and then write the notes directly on it so I have both my thoughts and evidence in one place for future use.</p>
+    <div class="tip-box">
+        <strong>The Super Secret Third Option</strong>
+        <p>Just print it normally, screw the offsets. I still print borderless, I print the front side, give it 5 minutes to dry, flip and print on the backside. Take a look at my results if you think I'm just huffing my own farts.</p>
+    <div class="expandable" onclick="toggleExpandable(this)">
+    <div class="expandable-header">
+        <span>180gsm (thick stock) Proofs</span>
+        <span class="expandable-icon">></span>
+    </div>
+    <div class="expandable-body">
+        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.75; padding-top: 1rem;">
+            <video controls autoplay loop muted playsinline width="75%" height="auto" >
+                <source src="images/20260731 113952x.mp4" type="video/mp4">
+            </video>
+        </p>
+    </div>
+    </div>
+<div class="section-divider"><hr></div>
+    <div class="expandable" onclick="toggleExpandable(this)">
+    <div class="expandable-header">
+        <span>160gsm (standard stock) Proofs</span>
+        <span class="expandable-icon">></span>
+    </div>
+    
+    <div class="expandable-body">
+        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.75; padding-top: 1rem;">
+            <video controls autoplay loop muted playsinline width="75%" height="auto" >
+                <source src="images/20260731 113855x.mp4" type="video/mp4">
+            </video>
+        </p>
+    </div>
+    </div>
+    </div>    
+    <p>Wow, what a whole lot of words to just say, <em>"Don't offset, stupid! Just flip and print"</em>. But I personally hate when a conversation is avoided for a simple truth. That truth is usually championed because of the behind the scenes conversations and work done. Hopefully this will add to that behind the scenes and let people build on it and prove me wrong and come up with an even simplier and efficient truth.</p>
+</section>
+
+<div class="section-divider"><hr></div>
+
+<!-- FOOTER -->
+<footer>
+    <p style="font-family: 'Cinzel', serif; color: var(--gold-dim); margin-bottom: 0.5rem;">Proxy Forge</p>
+    <p>A community resource for MTG proxy crafting.</p>
+    <p style="margin-top: 0.5rem;">Proxies are for personal use and playtesting. Support the game &mdash; buy the cards you love.</p>
+</footer>
+
+<script>
+    function closeNav() {
+        document.querySelector('.nav-links').classList.remove('open');
+    }
+
+    document.addEventListener('click', (e) => {
+        const nav = document.querySelector('.nav-links');
+        const toggle = document.querySelector('.mobile-toggle');
+        if (!nav.contains(e.target) && !toggle.contains(e.target)) {
+            nav.classList.remove('open');
+        }
+    });
+</script>
+
+<script>
+function toggleExpandable(el) {
+    const body = el.querySelector('.expandable-body');
+    const wasOpen = el.classList.contains('open');
+    el.classList.toggle('open');
+    body.style.maxHeight = el.classList.contains('open') ? body.scrollHeight + 'px' : null;
+
+    if (!wasOpen) {
+        // opening
+        showFloatingProtip('Click anywhere in expanded box to close');
+    } else {
+        // closing — scroll back to top of the box, offset for the fixed nav
+        const navHeight = 60;
+        const boxTop = el.getBoundingClientRect().top + window.scrollY - navHeight - 20;
+        window.scrollTo({ top: boxTop, behavior: 'smooth' });
+    }
+
+    if (el.classList.contains('open')) {
+        showFloatingProtip('Click anywhere in expanded box to close');
+    }
+}
+</script>
+
+<script>
+let protipCooldown = false;
+
+function showFloatingProtip(message) {
+    if (protipCooldown) return;
+    protipCooldown = true;
+
+    let tip = document.getElementById('floating-protip');
+    if (!tip) {
+        tip = document.createElement('div');
+        tip.id = 'floating-protip';
+        tip.className = 'floating-protip';
+        document.body.appendChild(tip);
+    }
+
+    tip.textContent = message;
+    tip.classList.add('show');
+
+    // stay visible 3s, then fade over 3s (CSS transition handles the fade)
+    setTimeout(() => {
+        tip.classList.remove('show');
+    }, 3000);
+
+    // cooldown lasts 10s from trigger
+    setTimeout(() => {
+        protipCooldown = false;
+    }, 10000);
+}
+</script>
+</body>
+</html>
