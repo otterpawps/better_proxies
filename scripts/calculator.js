@@ -13,12 +13,12 @@ const fmtUSD2 = (n) =>
 
 /* ---------- state ---------- */
 const state = {
-  cardCount: 500,
+  cardCount: 999,
   maxCards: 3000,
   cutterCost: 60,
   punchCost: 16,
   laminatorCost: 40,
-  fedexPageCost: 1.50,
+  fedexPageCost: 1.31,
   fLamPackSize: 200,
   fLamPackCost: 18,
   printerModel: "2850",
@@ -26,7 +26,7 @@ const state = {
   ownPrinter: false,
   paperPackSize: 100,
   paperPackCost: 20,
-  inkYieldPages: 333,
+  inkYieldPages: 450,
   inkSetCost: 110,
   eLamPackSize: 200,
   eLamPackCost: 18,
