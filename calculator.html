@@ -9,194 +9,215 @@
 </head>
 <body>
 
-<div class="wrap">
+<div class="layout pinned" id="layout">
 
-  <!-- Header -->
-  <header class="header">
-    <div class="eyebrow">Better Proxies</div>
-    <h1>Cost Calculator</h1>
-    <p class="lede">
-      Plug in your real prices. Every consumable is tracked in packs, so you see the actual
-      spend including the cost jumps each time you need to re-up on paper, sheets, or ink.
-    </p>
-  </header>
+  <!-- ======== RESULTS (pinnable) ======== -->
+  <div class="results-pane" id="resultsPane">
+    <div class="results-inner">
 
-  <!-- Card count -->
-  <section class="panel">
-    <div class="row-between">
-      <label for="cardCount" class="label">Cards to print</label>
-      <div class="value-group">
-        <span id="cardCountValue" class="mono value-gold value-lg">500</span>
-        <span id="pageCountValue" class="sans dim small">(56 pages)</span>
-      </div>
-    </div>
-    <input type="range" id="cardCount" class="slider" min="9" max="3000" step="9" value="500" />
-    <div class="chart-max-row">
-      <span class="sans dim small">Chart max:</span>
-      <button class="pill" data-maxcards="1000">1k</button>
-      <button class="pill" data-maxcards="3000">3k</button>
-      <button class="pill" data-maxcards="5000">5k</button>
-      <button class="pill" data-maxcards="10000">10k</button>
-    </div>
-  </section>
-
-  <!-- Shared tools -->
-  <section class="panel accent-neutral">
-    <div class="panel-head">
-      <div class="panel-title">Shared Finishing Supplies</div>
-      <div id="sharedToolsBadge" class="badge">$116</div>
-    </div>
-    <div class="field-grid-3">
-      <div class="field">
-        <label for="cutterCost">Rotary cutter</label>
-        <div class="input-with-prefix"><span>$</span><input type="number" id="cutterCost" min="0" step="1" value="60" /></div>
-      </div>
-      <div class="field">
-        <label for="punchCost">Corner punch</label>
-        <div class="input-with-prefix"><span>$</span><input type="number" id="punchCost" min="0" step="1" value="16" /></div>
-      </div>
-      <div class="field">
-        <label for="laminatorCost">Laminator</label>
-        <div class="input-with-prefix"><span>$</span><input type="number" id="laminatorCost" min="0" step="1" value="40" /></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Methods -->
-  <div class="two-col">
-
-    <!-- FedEx -->
-    <section class="panel accent-teal">
-      <div class="panel-head">
-        <div class="panel-title">Method 1: FedEx</div>
-        <div id="fedexBadge" class="badge badge-teal">16.7¢/card</div>
-      </div>
-
-      <div class="field">
-        <label for="fedexPageCost">Cost per page</label>
-        <span class="field-sub">FedEx charges per printed page</span>
-        <div class="input-with-prefix"><span>$</span><input type="number" id="fedexPageCost" min="0.1" step="0.05" value="1.50" /></div>
-      </div>
-
-      <div class="subsection">
-        <div class="subsection-title">Laminator Sheets</div>
-        <div class="field">
-          <label for="fLamPackSize">Sheets per pack</label>
-          <div class="input-with-suffix"><input type="number" id="fLamPackSize" min="1" step="1" value="200" /><span>pgs</span></div>
-        </div>
-        <div class="field">
-          <label for="fLamPackCost">Pack cost</label>
-          <div class="input-with-prefix"><span>$</span><input type="number" id="fLamPackCost" min="0" step="0.5" value="18" /></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- EcoTank -->
-    <section class="panel accent-gold">
-      <div class="panel-head">
-        <div class="panel-title">Method 2: EcoTank</div>
-        <div id="ecoBadge" class="badge badge-gold">effective ¢/card</div>
-      </div>
-
-      <div class="subsection" style="border-top:none; margin-top:0; padding-top:0;">
-        <div class="subsection-title">Printer</div>
-        <div class="pill-row">
-          <button class="pill printer-pill" data-printer="2850">ET-2850 · $250</button>
-          <button class="pill printer-pill" data-printer="8500">ET-8500 · $600</button>
-          <button class="pill printer-pill" data-printer="custom">Custom</button>
-        </div>
-        <div class="field" id="customPrinterField" style="display:none; margin-top:8px;">
-          <label for="customPrinterCost">Printer cost</label>
-          <div class="input-with-prefix"><span>$</span><input type="number" id="customPrinterCost" min="0" step="10" value="400" /></div>
-        </div>
-        <label class="checkbox-row">
-          <input type="checkbox" id="ownPrinter" />
-          Already own a printer
+      <!-- Pin toggle -->
+      <div class="pin-row">
+        <label class="toggle-switch" id="pinToggle">
+          <input type="checkbox" id="pinCheckbox" />
+          <span class="track"><span class="thumb"></span></span>
+          <span class="toggle-label">Unpin Panels</span>
         </label>
       </div>
 
-      <div class="subsection">
-        <div class="subsection-title">Paper</div>
-        <div class="field">
-          <label for="paperPackSize">Sheets per pack</label>
-          <div class="input-with-suffix"><input type="number" id="paperPackSize" min="1" step="1" value="100" /><span>pgs</span></div>
+      <!-- Receipt -->
+      <section class="receipt">
+        <div class="receipt-head" id="receiptHead">Cost Breakdown · 500 cards · 56 pages</div>
+        <div class="receipt-cols">
+          <div class="receipt-col">
+            <div class="receipt-title">
+              <span>FedEx Office</span>
+              <span id="fedexTotal" class="mono">$0.00</span>
+            </div>
+            <div id="fedexLines"></div>
+            <div class="receipt-footline">
+              <span>Effective per card</span>
+              <span id="fedexEffective" class="mono">0.0¢</span>
+            </div>
+          </div>
+          <div class="receipt-col">
+            <div class="receipt-title">
+              <span>EcoTank</span>
+              <span id="ecoTotal" class="mono">$0.00</span>
+            </div>
+            <div id="ecoLines"></div>
+            <div class="receipt-footline">
+              <span>Effective per card</span>
+              <span id="ecoEffective" class="mono">0.0¢</span>
+            </div>
+          </div>
         </div>
-        <div class="field">
-          <label for="paperPackCost">Pack cost</label>
-          <div class="input-with-prefix"><span>$</span><input type="number" id="paperPackCost" min="0" step="0.5" value="20" /></div>
-        </div>
-      </div>
+        <div class="receipt-verdict" id="verdict"></div>
+      </section>
 
-      <div class="subsection">
-        <div class="subsection-title">Ink</div>
-        <div class="field">
-          <label for="inkYieldPages">Pages per ink set</label>
-          <span class="field-sub" id="inkYieldCardsSub">≈ 2,997 cards</span>
-          <div class="input-with-suffix"><input type="number" id="inkYieldPages" min="1" step="1" value="333" /><span>pgs</span></div>
+      <!-- Chart -->
+      <section class="chart-section">
+        <div class="chart-header">
+          <div>
+            <div class="panel-title serif">Cumulative cost over your print run</div>
+            <p class="sans dim small chart-sub">The staircase jumps are where you buy the next pack of paper, sheets, or ink.</p>
+          </div>
         </div>
-        <div class="field">
-          <label for="inkSetCost">Ink set cost</label>
-          <div class="input-with-prefix"><span>$</span><input type="number" id="inkSetCost" min="0" step="1" value="110" /></div>
+        <div class="chart-wrap" id="chartWrap">
+          <div class="chart-container" id="chartContainer"></div>
+          <div class="hover-line" id="hoverLine"></div>
+          <div class="hover-tooltip" id="hoverTooltip"></div>
         </div>
-      </div>
+        <div class="legend">
+          <span><i class="dot dot-teal"></i> FedEx Office</span>
+          <span><i class="dot dot-gold"></i> EcoTank</span>
+        </div>
+      </section>
 
-      <div class="subsection">
-        <div class="subsection-title">Laminator Sheets</div>
-        <div class="field">
-          <label for="eLamPackSize">Sheets per pack</label>
-          <div class="input-with-suffix"><input type="number" id="eLamPackSize" min="1" step="1" value="200" /><span>pgs</span></div>
-        </div>
-        <div class="field">
-          <label for="eLamPackCost">Pack cost</label>
-          <div class="input-with-prefix"><span>$</span><input type="number" id="eLamPackCost" min="0" step="0.5" value="18" /></div>
-        </div>
-      </div>
-    </section>
+    </div>
   </div>
 
-  <!-- Receipt -->
-  <section class="receipt">
-    <div class="receipt-head" id="receiptHead">Cost Breakdown · 500 cards · 56 pages</div>
+  <!-- ======== INPUTS (scrollable) ======== -->
+  <div class="inputs-pane" id="inputsPane">
+    <div class="inputs-inner">
 
-    <div class="receipt-cols">
-      <div class="receipt-col">
-        <div class="receipt-title">
-          <span>FedEx Office</span>
-          <span id="fedexTotal" class="mono">$0.00</span>
+      <!-- Header -->
+      <header class="header">
+        <div class="eyebrow">Better Proxies</div>
+        <h1>Cost Calculator</h1>
+        <p class="lede">
+          Plug in your real prices. Every consumable is tracked in packs, so you see the actual
+          spend including the cost jumps each time you need to re-up on paper, sheets, or ink.
+        </p>
+      </header>
+
+      <!-- Card count -->
+      <section class="panel">
+        <div class="row-between">
+          <label for="cardCount" class="label">Cards to print</label>
+          <div class="value-group">
+            <span id="cardCountValue" class="mono value-gold value-lg">500</span>
+            <span id="pageCountValue" class="sans dim small">(56 pages)</span>
+          </div>
         </div>
-        <div id="fedexLines"></div>
-        <div class="receipt-footline">
-          <span>Effective per card</span>
-          <span id="fedexEffective" class="mono">0.0¢</span>
+        <input type="range" id="cardCount" class="slider" min="9" max="3000" step="9" value="500" />
+        <div class="chart-max-row">
+          <span class="sans dim small">Chart max:</span>
+          <button class="pill" data-maxcards="1000">1k</button>
+          <button class="pill" data-maxcards="3000">3k</button>
+          <button class="pill" data-maxcards="5000">5k</button>
+          <button class="pill" data-maxcards="10000">10k</button>
         </div>
+      </section>
+
+      <!-- Shared tools -->
+      <section class="panel accent-neutral">
+        <div class="panel-head">
+          <div class="panel-title">Shared Finishing Supplies</div>
+          <div id="sharedToolsBadge" class="badge">$116</div>
+        </div>
+        <div class="field-grid-3">
+          <div class="field">
+            <label for="cutterCost">Rotary cutter</label>
+            <div class="input-with-prefix"><span>$</span><input type="number" id="cutterCost" min="0" step="1" value="60" /></div>
+          </div>
+          <div class="field">
+            <label for="punchCost">Corner punch</label>
+            <div class="input-with-prefix"><span>$</span><input type="number" id="punchCost" min="0" step="1" value="16" /></div>
+          </div>
+          <div class="field">
+            <label for="laminatorCost">Laminator</label>
+            <div class="input-with-prefix"><span>$</span><input type="number" id="laminatorCost" min="0" step="1" value="40" /></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Methods -->
+      <div class="two-col">
+        <!-- FedEx -->
+        <section class="panel accent-teal">
+          <div class="panel-head">
+            <div class="panel-title">Method 1: FedEx</div>
+            <div id="fedexBadge" class="badge badge-teal">16.7¢/card</div>
+          </div>
+          <div class="field">
+            <label for="fedexPageCost">Cost per page</label>
+            <span class="field-sub">FedEx charges per printed page</span>
+            <div class="input-with-prefix"><span>$</span><input type="number" id="fedexPageCost" min="0.1" step="0.05" value="1.50" /></div>
+          </div>
+          <div class="subsection">
+            <div class="subsection-title">Laminator Sheets</div>
+            <div class="field">
+              <label for="fLamPackSize">Sheets per pack</label>
+              <div class="input-with-suffix"><input type="number" id="fLamPackSize" min="1" step="1" value="200" /><span>pgs</span></div>
+            </div>
+            <div class="field">
+              <label for="fLamPackCost">Pack cost</label>
+              <div class="input-with-prefix"><span>$</span><input type="number" id="fLamPackCost" min="0" step="0.5" value="18" /></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- EcoTank -->
+        <section class="panel accent-gold">
+          <div class="panel-head">
+            <div class="panel-title">Method 2: EcoTank</div>
+            <div id="ecoBadge" class="badge badge-gold">eff. ¢/card</div>
+          </div>
+          <div class="subsection" style="border-top:none;margin-top:0;padding-top:0;">
+            <div class="subsection-title">Printer</div>
+            <div class="pill-row">
+              <button class="pill printer-pill" data-printer="2850">ET-2850 · $250</button>
+              <button class="pill printer-pill" data-printer="8500">ET-8500 · $600</button>
+              <button class="pill printer-pill" data-printer="custom">Custom</button>
+            </div>
+            <div class="field" id="customPrinterField" style="display:none;margin-top:8px;">
+              <label for="customPrinterCost">Printer cost</label>
+              <div class="input-with-prefix"><span>$</span><input type="number" id="customPrinterCost" min="0" step="10" value="400" /></div>
+            </div>
+            <label class="checkbox-row">
+              <input type="checkbox" id="ownPrinter" />
+              Already own a printer
+            </label>
+          </div>
+          <div class="subsection">
+            <div class="subsection-title">Paper</div>
+            <div class="field">
+              <label for="paperPackSize">Sheets per pack</label>
+              <div class="input-with-suffix"><input type="number" id="paperPackSize" min="1" step="1" value="100" /><span>pgs</span></div>
+            </div>
+            <div class="field">
+              <label for="paperPackCost">Pack cost</label>
+              <div class="input-with-prefix"><span>$</span><input type="number" id="paperPackCost" min="0" step="0.5" value="20" /></div>
+            </div>
+          </div>
+          <div class="subsection">
+            <div class="subsection-title">Ink</div>
+            <div class="field">
+              <label for="inkYieldPages">Pages per ink set</label>
+              <span class="field-sub" id="inkYieldCardsSub">≈ 2,997 cards</span>
+              <div class="input-with-suffix"><input type="number" id="inkYieldPages" min="1" step="1" value="333" /><span>pgs</span></div>
+            </div>
+            <div class="field">
+              <label for="inkSetCost">Ink set cost</label>
+              <div class="input-with-prefix"><span>$</span><input type="number" id="inkSetCost" min="0" step="1" value="110" /></div>
+            </div>
+          </div>
+          <div class="subsection">
+            <div class="subsection-title">Laminator Sheets</div>
+            <div class="field">
+              <label for="eLamPackSize">Sheets per pack</label>
+              <div class="input-with-suffix"><input type="number" id="eLamPackSize" min="1" step="1" value="200" /><span>pgs</span></div>
+            </div>
+            <div class="field">
+              <label for="eLamPackCost">Pack cost</label>
+              <div class="input-with-prefix"><span>$</span><input type="number" id="eLamPackCost" min="0" step="0.5" value="18" /></div>
+            </div>
+          </div>
+        </section>
       </div>
 
-      <div class="receipt-col">
-        <div class="receipt-title">
-          <span>EcoTank</span>
-          <span id="ecoTotal" class="mono">$0.00</span>
-        </div>
-        <div id="ecoLines"></div>
-        <div class="receipt-footline">
-          <span>Effective per card</span>
-          <span id="ecoEffective" class="mono">0.0¢</span>
-        </div>
-      </div>
     </div>
-
-    <div class="receipt-verdict" id="verdict"></div>
-  </section>
-
-  <!-- Chart -->
-  <section class="panel chart-panel">
-    <div class="panel-title serif">Cumulative cost over your print run</div>
-    <p class="sans dim small chart-sub">The staircase jumps are where you buy the next pack of paper, sheets, or ink.</p>
-    <div id="chartContainer" class="chart-container"></div>
-    <div class="legend">
-      <span><i class="dot dot-teal"></i> FedEx Office</span>
-      <span><i class="dot dot-gold"></i> EcoTank</span>
-    </div>
-  </section>
+  </div>
 
 </div>
 
