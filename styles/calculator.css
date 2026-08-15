@@ -8,6 +8,78 @@
   --teal: #3fb0a6;
   --line: #34324a;
   --red: #b6503f;
+  --nav-h: 60px;
+}
+
+/* ========== NAV ========== */
+
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(22, 21, 31, 0.85);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--line);
+}
+.nav-inner {
+  max-width: 1060px;
+  margin: 0 auto;
+  padding: 0 clamp(16px, 4vw, 48px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--nav-h);
+}
+.nav-logo {
+  font-family: "Cinzel", "Iowan Old Style", Georgia, serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--gold);
+  letter-spacing: 0.08em;
+  text-decoration: none;
+}
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+}
+.nav-links a {
+  color: var(--paper-dim);
+  text-decoration: none;
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+.nav-links a:hover,
+.nav-links a.current { color: var(--gold); }
+
+.mobile-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--paper-dim);
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .nav-links.open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: var(--nav-h); left: 0; right: 0;
+    background: rgba(22, 21, 31, 0.97);
+    padding: 1.5rem 2rem;
+    gap: 1rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .mobile-toggle { display: block; }
 }
 
 * { box-sizing: border-box; margin: 0; }
@@ -16,6 +88,7 @@ body {
   background: var(--ink);
   font-family: -apple-system, "Segoe UI", Inter, sans-serif;
   color: var(--paper);
+  padding-top: var(--nav-h);   /* add this */
 }
 
 .serif { font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif; }
@@ -31,8 +104,8 @@ body {
   margin: 0 auto;
 }
 .layout.pinned {
-  height: 100vh;
-  height: 100dvh;
+  height: calc(100vh - var(--nav-h));    /* was 100vh */
+  height: calc(100dvh - var(--nav-h));   /* was 100dvh */
   display: flex;
   flex-direction: column;
   overflow: hidden;

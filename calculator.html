@@ -6,8 +6,27 @@
 <title>Cost Calculator — Better Proxies</title>
 <meta name="description" content="Compare the real cost of FedEx Office vs EcoTank home printing for MTG proxies, including paper, ink, and laminator sheet consumables." />
 <link rel="stylesheet" href="styles/calculator.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
+<!-- NAV -->
+<nav>
+    <div class="nav-inner">
+        <a href="index.html" class="nav-logo">Better Proxies</a>
+        <button class="mobile-toggle" aria-label="Menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">&#9776;</button>
+        <ul class="nav-links">
+            <li><a href="index.html#abstract" onclick="closeNav()">Abstract</a></li>
+            <li><a href="index.html#prep" onclick="closeNav()">Prep</a></li>
+            <li><a href="index.html#fedex" onclick="closeNav()">FedEx</a></li>
+            <li><a href="index.html#finishing" onclick="closeNav()">Finishing</a></li>
+            <li><a href="index.html#ecotank" onclick="closeNav()">EcoTank</a></li>
+            <li><a href="index.html#foils" onclick="closeNav()">Foils</a></li>
+            <li><a href="index.html#mdfc" onclick="closeNav()">MDFC</a></li>
+            <li><a href="calculator.html" class="current" onclick="closeNav()">Calculator</a></li>
+        </ul>
+    </div>
+</nav>
 
 <div class="layout pinned" id="layout">
 
@@ -221,7 +240,18 @@
   </div>
 
 </div>
-
+<script>
+    function closeNav() {
+        document.querySelector('.nav-links').classList.remove('open');
+    }
+    document.addEventListener('click', (e) => {
+        const nav = document.querySelector('.nav-links');
+        const toggle = document.querySelector('.mobile-toggle');
+        if (!nav.contains(e.target) && !toggle.contains(e.target)) {
+            nav.classList.remove('open');
+        }
+    });
+</script>
 <script src="scripts/calculator.js"></script>
 </body>
 </html>
